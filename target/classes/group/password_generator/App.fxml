@@ -8,13 +8,15 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.password_generator.AppController">
    <children>
-      <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="180.0" layoutY="30.0" text="Hány karakter hosszú legyen a jelszó?" textAlignment="CENTER" />
+      <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="179.0" layoutY="61.0" text="Hány karakter hosszú legyen a jelszó?" textAlignment="CENTER" />
       <Slider fx:id="digitslider" blockIncrement="1.0" layoutX="30.0" layoutY="79.0" majorTickUnit="1.0" max="20.0" min="5.0" minorTickCount="0" prefHeight="24.0" prefWidth="542.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0" />
       <Label fx:id="digitLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="260.0" layoutY="145.0" prefHeight="31.0" prefWidth="63.0" text="5 karakter" textAlignment="CENTER" />
-      <Button fx:id="passwordButton" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="214.0" mnemonicParsing="false" onAction="#generatePassword" prefHeight="30.0" prefWidth="574.0" text="Generálj!" />
+      <Button fx:id="passwordButton" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="214.0" mnemonicParsing="false" onAction="#pressedGenerateButton" prefHeight="30.0" prefWidth="574.0" text="Generálj!" />
       <Label fx:id="passwordLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="262.0" prefHeight="55.0" prefWidth="511.0" text=" Generált Jelszó" textAlignment="CENTER" visible="false" wrapText="true" />
       <CheckBox fx:id="showpasswordCheckbox" alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="176.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Mutassam a generált jelszót?" />
       <Button fx:id="savepasswordtotxtButton" alignment="CENTER" contentDisplay="CENTER" layoutX="227.0" layoutY="345.0" mnemonicParsing="false" onAction="#printpassword" text="Jelszó mentése txt fájlba" visible="false" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="220.0" />
       <Button fx:id="copypasswordtoclipboardButton" alignment="CENTER" contentDisplay="CENTER" layoutX="222.0" layoutY="410.0" mnemonicParsing="false" onAction="#copyPasspowrdToClipboard" text="Jelszó másolása vágólapra" visible="false" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="220.0" />
+      <Label layoutX="178.0" layoutY="5.0" text="Legyen speciális karakter a jelszóban?" />
+      <CheckBox fx:id="specialCharacterCheck" layoutX="248.0" layoutY="29.0" mnemonicParsing="false" text="Igen." />
    </children>
 </AnchorPane>

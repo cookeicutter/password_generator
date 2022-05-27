@@ -23,7 +23,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AppController implements Initializable {
-
+    @FXML
+    public CheckBox specialCharacterCheck= new CheckBox();
 
     @FXML
     public Button copypasswordtoclipboardButton = new Button();
@@ -85,16 +86,16 @@ public class AppController implements Initializable {
         }
     }
 
-    public void generatePassword(ActionEvent event) throws IOException {
+    public String generatePassword( int digit) throws IOException {
 
-        savepasswordtotxtButton.setVisible(true);
-        int digit = (int) digitslider.getValue();
+
+        int digit1=digit;
         String lower_cases = "qwertzuiopasdfghjklyxcvbnm";
         String upper_cases = "QWERTZUIOPASDFGHJKLYXCVBNM";
 
         String password = "";
 
-        for (int x = 0; x < digit; x++) {
+        for (int x = 0; x < digit1; x++) {
             int rand = (int) (3 * Math.random());
             switch (rand) {
                 case 0:
@@ -110,9 +111,8 @@ public class AppController implements Initializable {
                     break;
             }
         }
-        generatedpassword = password;
-        passwordLabel.setText(generatedpassword);
-        copypasswordtoclipboardButton.setVisible(true);
+
+        return password;
     }
 
     public void checkBoxAction(ActionEvent event) throws IOException {
@@ -132,5 +132,66 @@ public class AppController implements Initializable {
 
     }
 
+    public void pressedGenerateButton(ActionEvent event) throws IOException{
+        savepasswordtotxtButton.setVisible(true);
+        if(specialCharacterCheck.isSelected()){
+
+            generatedpassword=generatePasswordWithSpecialCharacters((int) digitslider.getValue());
+
+        } else {
+
+            generatedpassword = generatePassword((int) digitslider.getValue());
+        }
+
+
+        passwordLabel.setText(generatedpassword);
+        copypasswordtoclipboardButton.setVisible(true);
+    }
+
+
+    public String generatePasswordWithSpecialCharacters( int digit) throws IOException {
+
+        int digit1=digit;
+        String lower_cases = "qwertzuiopasdfghjklyxcvbnm";
+        String upper_cases = "QWERTZUIOPASDFGHJKLYXCVBNM";
+
+
+        String password = "";
+
+        for (int x = 0; x < digit1; x++) {
+            int rand = (int) (3 * Math.random());
+            switch (rand) {
+                case 0:
+                    password += String.valueOf((int) (10 * Math.random()));
+                    break;
+                case 1:
+                    rand = (int) (lower_cases.length() * Math.random());
+                    password += String.valueOf(lower_cases.charAt(rand));
+                    break;
+                case 2:
+                    rand = (int) (upper_cases.length() * Math.random());
+                    password += String.valueOf(upper_cases.charAt(rand));
+                    break;
+            }
+
+        }
+
+        int specCharAt = (int) (digit1 * Math.random());
+        char spec='*';
+        int rand2 = (int) (4 * Math.random());
+        switch (rand2) {
+            case 0: spec='_'; break;
+            case 1: spec='*'; break;
+            case 2: spec='$'; break;
+            case 3: spec='%'; break;
+
+        }
+
+        char temp[]= password.toCharArray();
+        temp[specCharAt]=spec;
+        password=String.valueOf(temp);
+
+        return password;
+    }
 
 }
